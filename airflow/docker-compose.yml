@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+   postgres_data_werhouse:
+    image: postgres:13
+    container_name: postgres_data_werhouse
+    ports:
+      - "5432:5432"
+    networks:
+      - localNetwork
+    environment:
+      POSTGRES_USER : postgres
+      POSTGRES_PASSWORD : postgres
+      POSTGRES_DB : postgres
+    volumes:
+    - postgres_data:/var/lib/postgressql/Enterprise_Sales_Analytics_Platform
+networks:
+  localNetwork:
+     driver: bridge
