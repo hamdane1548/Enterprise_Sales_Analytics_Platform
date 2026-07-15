@@ -1,0 +1,27 @@
+services:
+  customer_db:
+    container_name: customer_db
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=customer
+    ports:
+      - "5433:5432"
+    networks:
+      - airflow_network
+  scheduler:
+    networks:
+      - airflow_network
+  api-server:
+      networks:
+        - airflow_network
+  dag-processor:
+      networks:
+        - airflow_network
+  triggerer:
+      networks:
+        - airflow_network
+networks:
+  airflow_network:
+    external: true
